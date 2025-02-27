@@ -1,12 +1,13 @@
 
-// run: uvicorn main:app
+# run: uvicorn main:app
+
+import json
 
 from fastapi import FastAPI
 
-from email import email
+# from email import email
 from datetime import datetime
-from pydantic import BaseModel, PositiveInt, ValidationError
-
+from pydantic import BaseModel, TypeAdapter, PositiveInt, ValidationError
 
 class User(BaseModel):
     id: int
@@ -30,9 +31,14 @@ try:
 except ValidationError as e:
     print(e.errors())
 
+user_schema = User.model_json_schema()
+# print(json.dumps(user_schema, indent=2))
+
+adapter = TypeAdapter(User)
+# print(adapter.json_schema())
 
 app = FastAPI()
 
 @app.get("/")
 async def index():
-    return {"message": "Hello World", "user": user}
+    return {"message": "Hello World", "user": json.dumps(user_schema)}
