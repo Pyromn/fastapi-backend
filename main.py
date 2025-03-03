@@ -2,12 +2,15 @@
 # run: uvicorn main:app
 
 import json
+# import logging
 
 from fastapi import FastAPI
 
 # from email import email
 from datetime import datetime
 from pydantic import BaseModel, TypeAdapter, PositiveInt, ValidationError
+
+# logging.basicConfig(level=logging.DEBUG)
 
 class User(BaseModel):
     id: int

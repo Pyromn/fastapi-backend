@@ -9,22 +9,35 @@ async def main() -> None:
 
    users = await db.user.find_many()
 
+   print(users)
+
    users = await db.user.find_many(
        include={
-           'posts': True,
+           'Posts': True,
        },
    )
+
+   print(users)
+
+   posts = await db.post.find_many(
+       include={
+           'User': True,
+       },
+   )
+
+   print(posts)
 
    posts = await db.post.find_many(
        where={
            'OR': [
                {'title': {'contains': 'prisma'}},
-               {'content': {'contains': 'prisma'}},
            ]
        }
    )
 
-   await prisma.disconnect()
+   print(posts)
+
+   await db.disconnect()
 
 if __name__ == '__main__':
     asyncio.run(main())

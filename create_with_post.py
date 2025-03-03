@@ -11,7 +11,7 @@ async def main() -> None:
         data={
             'name': 'Robert',
             'email': 'robert@craigie.dev',
-            'posts': {
+            'Posts': {
                 'create': {
                     'title': 'My first post from Prisma!',
                 },
@@ -30,7 +30,7 @@ async def main() -> None:
         },
     )
 
-    await prisma.disconnect()
+    await db.disconnect()
 
 if __name__ == '__main__':
     asyncio.run(main())
