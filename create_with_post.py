@@ -10,7 +10,7 @@ async def main() -> None:
     user = await db.user.create(
         data={
             'name': 'Robert',
-            'email': 'robert@craigie.dev',
+            'email': 'robert@email.dev',
             'Posts': {
                 'create': {
                     'title': 'My first post from Prisma!',
