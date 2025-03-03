@@ -15,7 +15,9 @@ async def main() -> None:
     # print(users)
 
     for user in users:
-        print(user)
+        print(user.id)
+        print(user.name)
+        print(user.email)
 
 
     await db.disconnect()
