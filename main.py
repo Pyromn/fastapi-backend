@@ -34,14 +34,16 @@ try:
 except ValidationError as e:
     print(e.errors())
 
-adapter = TypeAdapter(User)
+# adapter = TypeAdapter(User)
 # print(adapter.json_schema())
 
 user_schema = User.model_json_schema()
 # print(user_schema)
 
+# adapter.json_schema() === user_schema
+
 app = FastAPI()
 
 @app.get("/")
 async def index():
-    return {"message": "Hello World", "schema": adapter.json_schema(), "user": user_schema}
+    return user_schema
